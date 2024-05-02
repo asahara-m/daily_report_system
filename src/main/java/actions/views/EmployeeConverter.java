@@ -35,8 +35,8 @@ public class EmployeeConverter {
                                 ev.getDeleteFlag() == null
                                 ? null
                                         : ev.getDeleteFlag() == AttributeConst.DEL_FLAG_TRUE.getIntegerValue()
-                                        ?JpaConst.EMP_DEL_TRUE
-                                                :JpaConst.EMP_DEL_FALSE);
+                                        ? JpaConst.EMP_DEL_TRUE
+                                                : JpaConst.EMP_DEL_FALSE);
     }
 
     /**
@@ -58,7 +58,7 @@ public class EmployeeConverter {
                 ? null
                         : e.getAdminFlag() == JpaConst.ROLE_ADMIN
                         ? AttributeConst.ROLE_ADMIN.getIntegerValue()
-                                :AttributeConst.ROLE_GENERAL.getIntegerValue(),
+                                : AttributeConst.ROLE_GENERAL.getIntegerValue(),
                                 e.getCreatedAt(),
                                 e.getUpdatedAt(),
                                 e.getDeleteFlag() == null
@@ -66,15 +66,14 @@ public class EmployeeConverter {
                                         : e.getDeleteFlag() == JpaConst.EMP_DEL_TRUE
                                         ? AttributeConst.DEL_FLAG_TRUE.getIntegerValue()
                                                 : AttributeConst.DEL_FLAG_FALSE.getIntegerValue());
-
     }
     /**
      * DTOモデルのリストからViewモデルのリストを作成する
      * @param list DTOモデルのリスト
      * @return Viewモデルのリスト
      */
-    public static List<EmployeeView> toViewList(List<Employee>list) {
-        java.util.List<EmployeeView> evs = new ArrayList<>();
+    public static List<EmployeeView> toViewList(List<Employee> list) {
+        List<EmployeeView> evs = new ArrayList<>();
 
         for (Employee e : list) {
             evs.add(toView(e));
