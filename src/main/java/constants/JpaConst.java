@@ -22,12 +22,19 @@ public interface JpaConst {
     String EMP_COL_NAME = "name"; // 氏名
     String EMP_COL_PASS = "password"; //パスワード
     String EMP_COL_ADMIN_FLAG = "admin_flag"; // 管理者権限
+
+    String EMP_COL_APPROVAL_FLAG = "approval_flag"; //承認権限
+
     String EMP_COL_CREATED_AT = "created_at"; // 登録日時
     String EMP_COL_UPDATED_AT = "updated_at"; // 更新日時
     String EMP_COL_DELETE_FLAG = "delete_flag"; // 削除フラグ
 
     int ROLE_ADMIN = 1; // 管理者権限ON(管理者)
     int ROLE_GENERAL = 0; // 管理者権限OFF(一般)
+
+    int ROLE_APPROVAL = 1; // 承認管理権限ON(承認者)
+    int NO_ROLE_APPROVAL = 0; //承認管理権限OFF(一般)
+
     int EMP_DEL_TRUE = 1; // 削除フラグON(削除済み)
     int EMP_DEL_FALSE = 0; // 削除フラグOFF(現役)
 
@@ -36,11 +43,18 @@ public interface JpaConst {
     // 日報テーブルカラム
     String REP_COL_ID = "id"; // id
     String REP_COL_EMP = "employee_id"; // 日報を作成した従業員のid
+    String REP_COL_APL = "apploval_id"; // 日報を承認した従業員のid
     String REP_COL_REP_DATE = "report_date"; // いつの日報かを示す日付
     String REP_COL_TITLE = "title"; // 日報のタイトル
     String REP_COL_CONTENT = "content"; // 日報の内容
     String REP_COL_CREATED_AT = "created_at"; // 登録日時
     String REP_COL_UPDATED_AT = "updated_at"; // 更新日時
+    String REP_COL_APPROVAL_AT = "approval_at"; // 承認日時
+
+
+    int RMP_COL_APL_TRUE = 1; // 承認された権限ON(承認者)
+    int RMP_COL_APL_FALSE = 0; //承認削除権限OFF(一般)
+
 
     // Entity名
     String ENTITY_EMP = "employee"; // 従業員

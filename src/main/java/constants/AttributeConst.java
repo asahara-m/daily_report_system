@@ -1,3 +1,5 @@
+
+
 package constants;
 
 /**
@@ -32,12 +34,17 @@ public enum AttributeConst {
     EMP_PASS("password"),
     EMP_NAME("name"),
     EMP_ADMIN_FLG("admin_flag"),
+    EMP_APPROVAL_FLAG("approval_flag"),
 
 
 
     // 管理者フラグ
     ROLE_ADMIN(1),
     ROLE_GENERAL(0),
+
+ // 承認者フラグ
+    ROLE_APPROVAL(1),
+    NO_ROLE_APPROVAL(0),
 
     // 削除フラグ
     DEL_FLAG_TRUE(1),
@@ -50,7 +57,12 @@ public enum AttributeConst {
     REP_ID("id"),
     REP_DATE("report_date"),
     REP_TITLE("title"),
-    REP_CONTENT("content_msg");
+    REP_CONTENT("content_msg"),
+    REP_COL_APL ("apploval_employee"),//承認権限
+
+    RMP_COL_APL_TRUE(1), // 承認された権限ON(承認者)
+    RMP_COL_APL_FALSE(0); //承認削除権限OFF(一般)
+
 
     private final String text;
     private final Integer i;

@@ -118,7 +118,7 @@ public class ReportService extends ServiceBase {
             updateInternal(rv);
         }
 
-        // zバリデーションで発生したエラーを返却（エラーがなければ0件の空リスト）
+        // バリデーションで発生したエラーを返却（エラーがなければ0件の空リスト）
         return errors;
     }
 

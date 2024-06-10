@@ -30,13 +30,18 @@ public class EmployeeConverter {
                         : ev.getAdminFlag() == AttributeConst.ROLE_ADMIN.getIntegerValue()
                         ? JpaConst.ROLE_ADMIN
                                 : JpaConst.ROLE_GENERAL,
-                                ev.getCreatedAt(),
-                                ev.getUpdatedAt(),
-                                ev.getDeleteFlag() == null
+                                ev.getApprovalflag() == null
                                 ? null
-                                        : ev.getDeleteFlag() == AttributeConst.DEL_FLAG_TRUE.getIntegerValue()
-                                        ? JpaConst.EMP_DEL_TRUE
-                                                : JpaConst.EMP_DEL_FALSE);
+                                        : ev.getApprovalflag() == AttributeConst.ROLE_APPROVAL.getIntegerValue()
+                                        ? JpaConst.ROLE_APPROVAL
+                                                : JpaConst.NO_ROLE_APPROVAL,
+                                                ev.getCreatedAt(),
+                                                ev.getUpdatedAt(),
+                                                ev.getDeleteFlag() == null
+                                                ? null
+                                                        : ev.getDeleteFlag() == AttributeConst.DEL_FLAG_TRUE.getIntegerValue()
+                                                        ? JpaConst.EMP_DEL_TRUE
+                                                                : JpaConst.EMP_DEL_FALSE);
     }
 
     /**
@@ -59,13 +64,18 @@ public class EmployeeConverter {
                         : e.getAdminFlag() == JpaConst.ROLE_ADMIN
                         ? AttributeConst.ROLE_ADMIN.getIntegerValue()
                                 : AttributeConst.ROLE_GENERAL.getIntegerValue(),
-                                e.getCreatedAt(),
-                                e.getUpdatedAt(),
-                                e.getDeleteFlag() == null
+                                e.getApprovalflag() == null
                                 ? null
-                                        : e.getDeleteFlag() == JpaConst.EMP_DEL_TRUE
-                                        ? AttributeConst.DEL_FLAG_TRUE.getIntegerValue()
-                                                : AttributeConst.DEL_FLAG_FALSE.getIntegerValue());
+                                        : e.getApprovalflag() == JpaConst.ROLE_APPROVAL
+                                        ? AttributeConst.ROLE_APPROVAL.getIntegerValue()
+                                                : AttributeConst.NO_ROLE_APPROVAL.getIntegerValue(),
+                                                e.getCreatedAt(),
+                                                e.getUpdatedAt(),
+                                                e.getDeleteFlag() == null
+                                                ? null
+                                                        : e.getDeleteFlag() == JpaConst.EMP_DEL_TRUE
+                                                        ? AttributeConst.DEL_FLAG_TRUE.getIntegerValue()
+                                                                : AttributeConst.DEL_FLAG_FALSE.getIntegerValue());
     }
     /**
      * DTOモデルのリストからViewモデルのリストを作成する
@@ -91,6 +101,7 @@ public class EmployeeConverter {
         e.setName(ev.getName());
         e.setPassword(ev.getPassword());
         e.setAdminFlag(ev.getAdminFlag());
+        e.setApprovalflag(ev.getApprovalflag());
         e.setCreatedAt(ev.getCreatedAt());
         e.setUpdatedAt(ev.getUpdatedAt());
         e.setDeleteFlag(ev.getDeleteFlag());

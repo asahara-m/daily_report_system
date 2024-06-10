@@ -103,6 +103,7 @@ public class EmployeeAction extends ActionBase {
                     getRequestParam(AttributeConst.EMP_NAME),
                     getRequestParam(AttributeConst.EMP_PASS),
                     toNumber(getRequestParam(AttributeConst.EMP_ADMIN_FLG)),
+                    toNumber(getRequestParam(AttributeConst.EMP_APPROVAL_FLAG)),
                     null,
                     null,
                     AttributeConst.DEL_FLAG_FALSE.getIntegerValue());
@@ -206,6 +207,7 @@ public class EmployeeAction extends ActionBase {
                     getRequestParam(AttributeConst.EMP_NAME),
                     getRequestParam(AttributeConst.EMP_PASS),
                     toNumber(getRequestParam(AttributeConst.EMP_ADMIN_FLG)),
+                    toNumber(getRequestParam(AttributeConst.EMP_APPROVAL_FLAG)),
                     null,
                     null,
                     AttributeConst.DEL_FLAG_FALSE.getIntegerValue());

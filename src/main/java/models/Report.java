@@ -64,6 +64,13 @@ public class Report {
     private Employee employee;
 
     /**
+     * 日報を承認した従業員
+     */
+    @ManyToOne
+    @JoinColumn(name = JpaConst.REP_COL_APL, nullable = true)
+    private Employee apploval;
+
+    /**
      * いつの日報かを示す日付
      */
     @Column(name = JpaConst.REP_COL_REP_DATE, nullable = false)
@@ -93,5 +100,11 @@ public class Report {
      */
     @Column(name = JpaConst.REP_COL_UPDATED_AT, nullable = false)
     private LocalDateTime updatedAt;
+
+    /**
+     * 承認日時
+     */
+    @Column(name = JpaConst.REP_COL_APPROVAL_AT, nullable = true)
+    private LocalDateTime applovalAt;
 
 }

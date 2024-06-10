@@ -30,6 +30,11 @@ public class ReportView {
     private EmployeeView employee;
 
     /**
+     * 承認を登録した従業員
+     */
+    private EmployeeView apploval_employee;
+
+    /**
      * いつの日報かを示す日付
      */
     private LocalDate reportDate;
@@ -53,5 +58,11 @@ public class ReportView {
      * 更新日時
      */
     private LocalDateTime updatedAt;
+
+    /**
+     * 承認日時
+     */
+    private LocalDateTime applovalAt;
+
 
 }

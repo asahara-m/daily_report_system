@@ -2,6 +2,7 @@ package actions;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -106,13 +107,17 @@ public class ReportAction extends ActionBase {
             // セッションからログイン中の従業員情報を取得
             EmployeeView ev = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
 
+
+
             // パラメータの値をもとに日報情報のインスタンスを作成する
             ReportView rv = new ReportView(
                     null,
                     ev, // ログインしている従業員を、日報作成者として登録する
+                    null,
                     day,
                     getRequestParam(AttributeConst.REP_TITLE),
                     getRequestParam(AttributeConst.REP_CONTENT),
+                    null,
                     null,
                     null);
 
@@ -154,6 +159,7 @@ public class ReportAction extends ActionBase {
         // idを条件に日報データを取得する
         ReportView rv = service.findOne(toNumber(getRequestParam(AttributeConst.REP_ID)));
 
+
         if (rv == null) {
             // 該当の日報データが存在しない場合はエラー画面を表示
             forward(ForwardConst.FW_ERR_UNKNOWN);
@@ -176,7 +182,6 @@ public class ReportAction extends ActionBase {
 
         // idを条件に日報データを取得する
         ReportView rv = service.findOne(toNumber(getRequestParam(AttributeConst.REP_ID)));
-
         // セッションからログイン中の従業員情報を取得
         EmployeeView ev = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
 
@@ -237,6 +242,51 @@ public class ReportAction extends ActionBase {
             }
         }
     }
+    // 承認フラグを立てる
+    public void approval() throws ServletException, IOException {
+
+        // セッションからログイン中の従業員情報を取得
+        EmployeeView ev = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
+        // idを条件に日報データを取得する
+        ReportView rv = service.findOne(toNumber(getRequestParam(AttributeConst.REP_ID)));
+        // 承認フラグ立てる
+        rv.setApploval_employee(ev);
+
+        // 承認時間
+        //登録日時、更新日時は現在時刻を設定する
+        LocalDateTime now = LocalDateTime.now();
+
+        rv.setApplovalAt(now);
+        // 日報データを更新する
+        service.update(rv);
+        // セッションに更新完了のフラッシュメッセージを設定
+        putSessionScope(AttributeConst.FLUSH, MessageConst.I_APPROVAL.getMessage());
+
+        show();
+
+        removeSessionScope(AttributeConst.FLUSH);
+    }
+
+    // 承認解除のフラグを立てる
+    public void unapproved() throws ServletException, IOException {
+
+        // idを条件に日報データを取得する
+        ReportView rv = service.findOne(toNumber(getRequestParam(AttributeConst.REP_ID)));
+        // 承認完了フラグ
+        rv.setApploval_employee(null);
+        rv.setApplovalAt(null);
+        // 日報データを更新する
+        service.update(rv);
+
+        // セッションに更新完了のフラッシュメッセージを設定
+        putSessionScope(AttributeConst.FLUSH, MessageConst.I_UNAPPROVED.getMessage());
+
+        // show画面にリダイレクト
+        show();
+
+        removeSessionScope(AttributeConst.FLUSH);
+    }
+
 }
 
 

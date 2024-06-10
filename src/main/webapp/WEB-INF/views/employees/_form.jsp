@@ -33,6 +33,12 @@
     <option value="${AttributeConst.ROLE_ADMIN.getIntegerValue()}"<c:if test="${employee.adminFlag == AttributeConst.ROLE_ADMIN.getIntegerValue()}"> selected</c:if>>管理者</option>
 </select>
 <br /><br />
+<label for="${AttributeConst.EMP_APPROVAL_FLAG.getValue()}">承認</label><br />
+<select name="${AttributeConst.EMP_APPROVAL_FLAG.getValue()}" id="${AttributeConst.EMP_APPROVAL_FLAG.getValue()}">
+    <option value="${AttributeConst.NO_ROLE_APPROVAL.getIntegerValue()}"<c:if test="${employee.approvalflag == AttributeConst.NO_ROLE_APPROVAL.getIntegerValue()}"> selected</c:if>>承認権限なし</option>
+    <option value="${AttributeConst.ROLE_APPROVAL.getIntegerValue()}"<c:if test="${employee.approvalflag == AttributeConst.ROLE_APPROVAL.getIntegerValue()}"> selected</c:if>>承認権限あり</option>
+</select>
+<br /><br />
 <input type="hidden" name="${AttributeConst.EMP_ID.getValue()}" value="${employee.id}" />
 <input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
 <button type="submit">投稿</button>

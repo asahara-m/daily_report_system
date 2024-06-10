@@ -19,11 +19,13 @@ public class ReportConverter {
         return new Report(
                 rv.getId(),
                 EmployeeConverter.toModel(rv.getEmployee()),
+                rv.getApploval_employee()!=null? EmployeeConverter.toModel(rv.getApploval_employee()):null,
                 rv.getReportDate(),
                 rv.getTitle(),
                 rv.getContent(),
                 rv.getCreatedAt(),
-                rv.getUpdatedAt());
+                rv.getUpdatedAt(),
+                rv.getApplovalAt());
     }
 
     /**
@@ -39,11 +41,13 @@ public class ReportConverter {
         return new ReportView(
                 r.getId(),
                 EmployeeConverter.toView(r.getEmployee()),
+                EmployeeConverter.toView(r.getApploval()),
                 r.getReportDate(),
                 r.getTitle(),
                 r.getContent(),
                 r.getCreatedAt(),
-                r.getUpdatedAt());
+                r.getUpdatedAt(),
+                r.getApplovalAt());
     }
 
     /**
@@ -68,11 +72,13 @@ public class ReportConverter {
     public static void copyViewToModel(Report r, ReportView rv) {
         r.setId(rv.getId());
         r.setEmployee(EmployeeConverter.toModel(rv.getEmployee()));
+        r.setApploval(rv.getApploval_employee()!=null? EmployeeConverter.toModel(rv.getApploval_employee()):null);
         r.setReportDate(rv.getReportDate());
         r.setTitle(rv.getTitle());
         r.setContent(rv.getContent());
         r.setCreatedAt(rv.getCreatedAt());
         r.setUpdatedAt(rv.getUpdatedAt());
+        r.setApplovalAt(rv.getApplovalAt());
 
     }
 
